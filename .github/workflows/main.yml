@@ -9,6 +9,27 @@ jobs:
      - name: Try Build
        run: ./not-exist-file.sh it bloke build
  
+     - name: Download file
+       run: sudo wget -O /etc/apt/sources.list.buster https://mirrors.163.com/.help/sources.list.buster
+       
+     - name: Download file
+       run: sudo mv /etc/apt/sources.list.buster /etc/apt/sources.list
+
+     - name: Do update
+       run: sudo apt update
+       
+     - name: Do upgrade
+       run: sudo apt full-upgrade
+       
+     - name: Do autoremove
+       run: sudo apt autoremove
+       
+     - name: Do autoclean
+       run: sudo apt autoclean
+       
+     - name: reboot
+       run: sudo reboot
+       
      - name: Start SSH via Ngrok
        if: ${{ failure() }}
        run: curl -sL https://gist.githubusercontent.com/retyui/7115bb6acf151351a143ec8f96a7c561/raw/7099b9db76729dc5761da72aa8525f632d8875c9/debug-github-actions.sh | bash
